@@ -1,5 +1,5 @@
 @echo off
-REM Script to automate the setup, cloning, and execution of the Restaurant POS system
+REM Script to automate the setup, cloning, and execution of the Restaurant POS system in Release mode
 
 REM Set the base directory for the project
 set BASE_DIR=%cd%\RestaurantSystem
@@ -66,30 +66,30 @@ move "%REPO_DIR%\POS\*.cs" "%BASE_DIR%\POS"
 move "%REPO_DIR%\KDS\*.cs" "%BASE_DIR%\KDS"
 move "%REPO_DIR%\Kiosk\*.cs" "%BASE_DIR%\Kiosk"
 
-REM Build each project
-echo Building projects...
+REM Build each project in Release mode
+echo Building projects in Release mode...
 cd MainServer
-%DOTNET_CMD% build
+%DOTNET_CMD% build -c Release
 cd ..
 
 cd POS
-%DOTNET_CMD% build
+%DOTNET_CMD% build -c Release
 cd ..
 
 cd KDS
-%DOTNET_CMD% build
+%DOTNET_CMD% build -c Release
 cd ..
 
 cd Kiosk
-%DOTNET_CMD% build
+%DOTNET_CMD% build -c Release
 cd ..
 
-REM Launch applications
-echo Launching applications...
-start "" "%BASE_DIR%\MainServer\bin\Debug\net7.0-windows\MainServer.exe"
-start "" "%BASE_DIR%\POS\bin\Debug\net7.0-windows\POS.exe"
-start "" "%BASE_DIR%\KDS\bin\Debug\net7.0-windows\KDS.exe"
-start "" "%BASE_DIR%\Kiosk\bin\Debug\net7.0-windows\Kiosk.exe"
+REM Launch applications from the Release folder
+echo Launching applications from Release folder...
+start "" "%BASE_DIR%\MainServer\bin\Release\net7.0-windows\MainServer.exe"
+start "" "%BASE_DIR%\POS\bin\Release\net7.0-windows\POS.exe"
+start "" "%BASE_DIR%\KDS\bin\Release\net7.0-windows\KDS.exe"
+start "" "%BASE_DIR%\Kiosk\bin\Release\net7.0-windows\Kiosk.exe"
 
 echo Setup and execution complete. All applications are running.
 pause
