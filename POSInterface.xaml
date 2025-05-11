@@ -1,0 +1,64 @@
+<Window x:Class="RestaurantPOS.POSInterface"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="POS Interface" Height="800" Width="1200"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <!-- Header -->
+        <Grid Background="#304FFE" Height="60" VerticalAlignment="Top">
+            <TextBlock Text="QuickService POS" Foreground="White" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Grid>
+
+        <!-- Sidebar for Menu Categories -->
+        <StackPanel Orientation="Vertical" Background="#F5F5F5" Width="200" HorizontalAlignment="Left" Margin="0,60,0,0">
+            <Button Content="Drinks" Height="60" Margin="5" FontSize="16" Click="MenuCategory_Click"/>
+            <Button Content="Meals" Height="60" Margin="5" FontSize="16" Click="MenuCategory_Click"/>
+            <Button Content="Snacks" Height="60" Margin="5" FontSize="16" Click="MenuCategory_Click"/>
+            <Button Content="Desserts" Height="60" Margin="5" FontSize="16" Click="MenuCategory_Click"/>
+            <Button Content="Others" Height="60" Margin="5" FontSize="16" Click="MenuCategory_Click"/>
+        </StackPanel>
+
+        <!-- Main Content -->
+        <Grid Margin="200,60,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Menu Items -->
+            <WrapPanel Grid.Column="0" Background="White" Margin="10" Name="MenuItemsPanel">
+                <!-- Dynamic Menu Items Loaded Here -->
+                <TextBlock Text="Select a category to view items" FontSize="16" FontWeight="Bold" Margin="10"/>
+            </WrapPanel>
+
+            <!-- Order Summary -->
+            <Grid Grid.Column="1" Background="#FAFAFA" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Order Items -->
+                <ListBox Name="OrderItemsListBox" Grid.Row="0" Margin="10">
+                    <!-- Example Items -->
+                    <ListBoxItem Content="Burger - $5.99"/>
+                    <ListBoxItem Content="Fries - $2.99"/>
+                </ListBox>
+
+                <!-- Order Totals and Actions -->
+                <StackPanel Grid.Row="1" Margin="10" Background="LightGray" Padding="10">
+                    <TextBlock Text="Subtotal: $10.97" FontSize="16" FontWeight="Bold" Name="SubtotalText"/>
+                    <TextBlock Text="Tax: $1.10" FontSize="16" FontWeight="Bold" Name="TaxText"/>
+                    <TextBlock Text="Total: $12.07" FontSize="18" FontWeight="Bold" Foreground="DarkGreen" Name="TotalText"/>
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <Button Content="Checkout" Height="40" Width="100" Margin="5" FontSize="16" Background="DarkBlue" Foreground="White" Click="Checkout_Click"/>
+                        <Button Content="Clear Order" Height="40" Width="100" Margin="5" FontSize="16" Background="Red" Foreground="White" Click="ClearOrder_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
